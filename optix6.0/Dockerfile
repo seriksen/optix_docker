@@ -23,3 +23,9 @@ ENV OptixInstallScript ${OptixVersion}-25650775.sh
 
 
 COPY ${OptixInstallScript} /home/${DOCKER_USER}
+
+#
+# To use Optix
+# sudo yum install freeglut-3.0.0-8.el7.i686
+#
+#
