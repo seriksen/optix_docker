@@ -26,5 +26,11 @@ done
 echo "Starting optix container with 1 GPU"
 
 #docker run ${to_mount} --rm --runtime=nvidia -it --gpus 1 $(container-name) /bin/bash
-docker run --rm --runtime=nvidia -it --gpus 1 $(container-name) /bin/bash
+
+docker run ${to_mount} --rm --runtime=nvidia \
+    --rm --env DISPLAY=unix$DISPLAY -v $XAUTH:/root/.Xauthority -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -it --gpus 1 $(container-name) /bin/bash
+
+
+
 }
