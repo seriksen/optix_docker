@@ -54,10 +54,8 @@ ENV CUDA_SAMPLES_DIR ${INSTALL_BASE}/cuda-samples
 ENV RUNTIME_BASE="/usr/local"
 
 # NVIDIA Cuda
-RUN mkdir ${CUDA_SAMPLES_DIR} && cd ${CUDA_SAMPLES_DIR}
 ENV PATH=${INSTALL_BASE}/cuda-${CUDA_VERSION}/bin:${INSTALL_BASE}/cuda-${CUDA_VERSION}/NsightCompute-${NsightCompute_version}${PATH}
 ENV LD_LIBRARY_PATH=/usr/lib64:/usr/lib:${INSTALL_BASE}/cuda-${CUDA_VERSION}/lib64:${LD_LIBRARY_PATH}
-RUN cuda-install-samples-${CUDA_VERSION}.sh .
 
 # Install NVIDIA OptiX
 ENV OptixVersion NVIDIA-OptiX-SDK-${OPTIX_VERSION}-linux64
