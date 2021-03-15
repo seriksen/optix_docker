@@ -5,7 +5,7 @@ RUN yum -y update
 RUN yum -y install sudo
 
 # Optix
-ARG optix=optix_install_scripts/NVIDIA-OptiX-SDK-6.0.0-linux64-25650775.sh
+ARG optix=NVIDIA-OptiX-SDK-6.0.0-linux64-25650775.sh
 ENV OptixInstallScript=${optix}
 
 # Set bash
@@ -55,7 +55,7 @@ RUN sudo yum -y groupinstall "X Window System" \
                              "Xfce"
 
 # Nvidia OptiX
-COPY ${OptixInstallScript} /home/${DOCKER_USER}
+COPY optix_install_scripts/${OptixInstallScript} /home/${DOCKER_USER}
 RUN cd /home/${DOCKER_USER} && yes | bash ${OptixInstallScript}
 
 
