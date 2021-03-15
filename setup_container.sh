@@ -22,7 +22,6 @@ push-optix() {
   docker push sameriksen/$(container-name):${tag}
 }
 
-
 run-optix() {
 
   # Get optiX libraries
@@ -31,8 +30,8 @@ run-optix() {
   optix_libs=$(find ${search_loc} | grep -i optix)
   rt_libs=$(find ${search_loc} | grep -i rtcore)
   swrast_dri=$(find ${search_loc} | grep -i swrast )
-  optix_mounts=""
 
+  optix_mounts=""
   for vol in $optix_libs $rt_libs $swrast_dri
   do
   optix_mounts="$optix_mounts -v ${vol}:${vol}"
