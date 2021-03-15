@@ -1,7 +1,7 @@
 #!/bin/bash
 
 container-name(){
-  echo optix
+  echo optix_desktop
 }
 
 build-optix() {
@@ -9,6 +9,18 @@ build-optix() {
   docker build --no-cache=true -t $(container-name) .
 }
 
+push-optix() {
+
+  if [ $# -eq 0 ]
+  then
+  tag="latest"
+  else
+  tag=$1
+  fi
+  echo "Pushing docker image with tag = $tag"
+
+  docker push sameriksen/$(container-name):${tag}
+}
 
 run-optix() {
 
@@ -18,11 +30,11 @@ run-optix() {
   optix_libs=$(find ${search_loc} | grep -i optix)
   rt_libs=$(find ${search_loc} | grep -i rtcore)
   swrast_dri=$(find ${search_loc} | grep -i swrast )
-  to_mount=""
 
+  optix_mounts=""
   for vol in $optix_libs $rt_libs $swrast_dri
   do
-  to_mount="$to_mount -v ${vol}:${vol}"
+  optix_mounts="$optix_mounts -v ${vol}:${vol}"
   done
 
   # Start the container
@@ -35,6 +47,6 @@ run-optix() {
   --rm=true \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v /etc/localtime:/etc/localtime:ro \
-  ${to_mount} \
+  ${optix_mounts} \
   $(container-name)
 }
