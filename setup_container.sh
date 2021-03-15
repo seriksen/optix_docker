@@ -28,7 +28,7 @@ run-optix() {
   # Start the container
   docker run -it \
   --runtime=nvidia \
-  --name=$(container_name) \
+  --name=$(container-name) \
   --security-opt seccomp=unconfined \
   --init \
   --net=host \

@@ -4,6 +4,10 @@ FROM nvidia/cudagl:10.2-devel-centos7
 RUN yum -y update
 RUN yum -y install sudo
 
+# Optix
+ARG optix=optix_install_scripts/NVIDIA-OptiX-SDK-6.0.0-linux64-25650775.sh
+ENV OptixInstallScript=${optix}
+
 # Set bash
 SHELL ["/bin/bash", "-c"]
 
@@ -40,21 +44,23 @@ RUN sudo -n yum -y install xorg-x11-apps.x86_64 \
                            libGL-devel \
                            libGLU-devel \
                            curl-devel \
-                           openssl-devel \
-                           terminator
+                           openssl-devel
 
 # Virtual GL and TurboVNC and Desktop
 RUN sudo yum -y install https://downloads.sourceforge.net/project/virtualgl/2.6.3/VirtualGL-2.6.3.x86_64.rpm \
-                        gdm \
+                        lightgdm \
                         https://downloads.sourceforge.net/project/turbovnc/2.2.4/turbovnc-2.2.4.x86_64.rpm
 
 RUN sudo yum -y groupinstall "X Window System" \
                              "Xfce"
 
-# Copy in OptiX
-ENV OptixInstallScript NVIDIA-OptiX-SDK-6.0.0-linux64-25650775.sh
+# Nvidia OptiX
 COPY ${OptixInstallScript} /home/${DOCKER_USER}
+RUN cd /home/${DOCKER_USER} && yes | bash ${OptixInstallScript}
+
+
+# Set LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/usr/lib64:/usr/lib:${LD_LIRARY_PATH}
 
 # Start visuals
 CMD /bin/bash
-#CMD /opt/TurboVNC/bin/vncserver -vgl -wm xfce4-session

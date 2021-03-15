@@ -1,2 +1,3 @@
 # optix_docker
-Test of Optix in Docker
+
+Code for running OptiX code (with visualisation) in a container.
