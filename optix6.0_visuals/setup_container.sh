@@ -6,7 +6,7 @@ container-name(){
 
 build-optix() {
 
-  docker build -no-cache=true -t $(container-name) .
+  docker build --no-cache=true -t $(container-name) .
 }
 
 
