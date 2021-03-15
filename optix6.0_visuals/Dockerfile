@@ -56,5 +56,5 @@ ENV OptixInstallScript NVIDIA-OptiX-SDK-6.0.0-linux64-25650775.sh
 COPY ${OptixInstallScript} /home/${DOCKER_USER}
 
 # Start visuals
-CMS /bin/bash
+CMD /bin/bash
 #CMD /opt/TurboVNC/bin/vncserver -vgl -wm xfce4-session
