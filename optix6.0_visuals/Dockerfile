@@ -52,9 +52,7 @@ RUN sudo yum -y groupinstall "X Window System" \
                              "Xfce"
 
 # Copy in OptiX
-ENV OptixVersion NVIDIA-OptiX-SDK-${OPTIX_VERSION}-linux64
-ENV OptixInstallScript ${OptixVersion}-25650775.sh
-
+ENV OptixInstallScript NVIDIA-OptiX-SDK-6.0.0-linux64-25650775.sh
 COPY ${OptixInstallScript} /home/${DOCKER_USER}
 
 # Start visuals
