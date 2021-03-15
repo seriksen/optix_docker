@@ -1,4 +1,4 @@
-export PS1='\[\033[02;32m\]sam@\H-container:\[\033[02;34m\]\w\$\[\033[00m\] '
+export PS1='\[\033[02;32m\]\u@optix_desktop:\[\033[02;34m\]\w\$\[\033[00m\] '
 
 alias ls='ls --color=auto'
 alias vim='vi'

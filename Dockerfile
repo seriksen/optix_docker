@@ -58,6 +58,10 @@ RUN sudo yum -y groupinstall "X Window System" \
 COPY optix_install_scripts/${OptixInstallScript} /home/${DOCKER_USER}
 RUN cd /home/${DOCKER_USER} && yes | bash ${OptixInstallScript}
 
+# Add .bashrc options
+COPY bashrc_customisation.sh /home/${DOCKER_USER}/.bashrc_customisation.sh
+RUN cd && echo "source ${HOME}/.bashrc_customisation.sh" >> .bashrc
+
 
 # Set LD_LIBRARY_PATH
 ENV LD_LIBRARY_PATH=/usr/lib64:/usr/lib:${LD_LIRARY_PATH}
