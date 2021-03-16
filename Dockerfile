@@ -67,4 +67,4 @@ RUN cd && echo "source ${HOME}/.bashrc_customisation.sh" >> .bashrc
 ENV LD_LIBRARY_PATH=/usr/lib64:/usr/lib:${LD_LIRARY_PATH}
 
 # Start visuals
-CMD /bin/bash
+# CMD /bin/bash
