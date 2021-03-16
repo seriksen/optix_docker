@@ -1,5 +1,7 @@
 export PS1='\[\033[02;32m\]\u@optix_desktop:\[\033[02;34m\]\w\$\[\033[00m\] '
 
+export LD_LIBRARY_PATH=/usr/lib64:/usr/lib:${LD_LIRARY_PATH}
+
 alias ls='ls --color=auto'
 alias vim='vi'
 alias la='ls -a --color=auto'
@@ -11,10 +13,8 @@ start_desktop() {
 }
 
 kill_desktop() {
-  if [ $# -eq 0 ]
-  then
-    echo "Provide the DISPLAY. eg :25"
-  else
-    /opt/TurboVNC/bin/vncserver -kill $1
-  fi
+  filename=$(basename ${HOME}/.vnc/*.log)
+  filename=${filename%.*}
+  desktop=${filename#*:}
+  /opt/TurboVNC/bin/vncserver -kill :${desktop}
 }
