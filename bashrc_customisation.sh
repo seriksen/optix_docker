@@ -13,10 +13,8 @@ start_desktop() {
 }
 
 kill_desktop() {
-  if [ $# -eq 0 ]
-  then
-    echo "Provide the DISPLAY. eg :25"
-  else
-    /opt/TurboVNC/bin/vncserver -kill $1
-  fi
+  filename=$(basename ${HOME}/.vnc/*.log)
+  filename=${filename%.*}
+  desktop=${filename#*:}
+  /opt/TurboVNC/bin/vncserver -kill :${desktop}
 }
