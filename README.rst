@@ -21,6 +21,12 @@ Usage
     build-optix
     run-optix
 
+Build args;
+
+* Optix Build Version. Set by :code:`optix=`
+* Docker user. Set by :code:`user=`
+
+eg; :code:`build-optix optix=NVIDIA-OptiX-SDK-7.0.0.sh user=sam`
 
 Misc
 ----
