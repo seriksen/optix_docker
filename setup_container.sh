@@ -5,8 +5,12 @@ container-name(){
 }
 
 build-optix() {
-
-  docker build --no-cache=true -t $(container-name) .
+  if [ $# -eq 0 ]
+  then
+    docker build --no-cache=true -t $(container-name) .
+  else
+    docker build --no-cache=true -t $(container-name) --build-arg optix=$1 .
+  fi
 }
 
 run-optix() {
