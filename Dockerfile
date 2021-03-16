@@ -12,7 +12,8 @@ ENV OptixInstallScript=${optix}
 SHELL ["/bin/bash", "-c"]
 
 # Set user
-ENV DOCKER_USER="sam"
+ARG user=sam
+ENV DOCKER_USER="${user}"
 RUN useradd -ms /bin/bash --groups wheel ${DOCKER_USER}
 RUN echo "${DOCKER_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER $DOCKER_USER

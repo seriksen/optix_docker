@@ -9,7 +9,12 @@ build-optix() {
   then
     docker build --no-cache=true -t $(container-name) .
   else
-    docker build --no-cache=true -t $(container-name) --build-arg optix=$1 .
+    args=""
+    for arg in "$@"
+    do
+      args="${args} --build-args ${arg}"
+    done
+    docker build --no-cache=true -t $(container-name) ${args} .
   fi
 }
 
