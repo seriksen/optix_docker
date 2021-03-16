@@ -1,7 +1,7 @@
 #!/bin/bash
 
 container-name(){
-  echo optix_desktop
+  echo optix_docker
 }
 
 build-optix() {
