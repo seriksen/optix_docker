@@ -9,19 +9,6 @@ build-optix() {
   docker build --no-cache=true -t $(container-name) .
 }
 
-push-optix() {
-
-  if [ $# -eq 0 ]
-  then
-  tag="latest"
-  else
-  tag=$1
-  fi
-  echo "Pushing docker image with tag = $tag"
-
-  docker push sameriksen/$(container-name):${tag}
-}
-
 run-optix() {
 
   # Get optiX libraries
