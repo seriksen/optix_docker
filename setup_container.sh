@@ -1,25 +1,21 @@
 #!/bin/bash
 
 container-name(){
-  echo optix_desktop
+  echo optix_docker
 }
 
 build-optix() {
-
-  docker build --no-cache=true -t $(container-name) .
-}
-
-push-optix() {
-
   if [ $# -eq 0 ]
   then
-  tag="latest"
+    docker build --no-cache=true -t $(container-name) .
   else
-  tag=$1
+    args=""
+    for arg in "$@"
+    do
+      args="${args} --build-args ${arg}"
+    done
+    docker build --no-cache=true -t $(container-name) ${args} .
   fi
-  echo "Pushing docker image with tag = $tag"
-
-  docker push sameriksen/$(container-name):${tag}
 }
 
 run-optix() {
